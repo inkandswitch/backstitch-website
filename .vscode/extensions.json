@@ -4,6 +4,9 @@
     "dbaeumer.vscode-eslint",
     "EditorConfig.EditorConfig",
     "oxc.oxc-vscode",
-    "esbenp.prettier-vscode"
+    "esbenp.prettier-vscode",
+    "austenc.tailwind-docs",
+    "bradlc.vscode-tailwindcss",
+    "csstools.postcss"
   ]
 }
