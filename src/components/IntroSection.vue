@@ -1,17 +1,17 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import SyncSimulation from './SyncSimulation.vue'
+</script>
 
 <template>
   <section class="text-content">
-    <h1>Real-Time Version Control for Godot</h1>
-    <p>
-      Patchwork??? allows fast, real-time collaboration for both game-development teams and
-      classrooms. Whether you're an artist, engineer, or student, collaborate side-by-side with your
-      whole team!
+    <h1 class="mb-8">Real-Time Version Control for Godot</h1>
+    <h2 class="text-center text-pretty mb-8">
+      Backstitch provides fast collaboration for dev teams, game jams, and classrooms.
+    </h2>
+    <p class="mb-5 bg-mauve-900">
+      <SyncSimulation />
     </p>
-    <p>
-      <img src="https://placekittens.com/220/200" class="m-auto" />
-    </p>
-    <div class="flex justify-center gap-5 flex-col sm:flex-row items-center">
+    <div class="flex justify-center gap-5 sm:gap-20 flex-col sm:flex-row items-center text-xl">
       <RouterLink class="button" to="/getting-started">Try the alpha!</RouterLink>
       <a
         class="button-secondary"

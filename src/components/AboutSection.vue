@@ -6,7 +6,7 @@
     <div class="flex flex-col sm:flex-row gap-5">
       <img class="order-first" src="https://placekittens.com/300/200" />
       <p>
-        Patchwork works alongside existing version control systems like Git. It acts as a layer
+        Backstitch works alongside existing version control systems like Git. It acts as a layer
         <em>on top</em> of your existing version control system, providing real-time functionality.
       </p>
     </div>
@@ -28,7 +28,7 @@
       </p>
     </div>
     <p>
-      Patchwork syncs with a remote server, storing your data on the cloud. You can host your own
+      Backstitch syncs with a remote server, storing your data on the cloud. You can host your own
       server easily! For alpha testing, we provide a public sync server that anyone can access.
     </p>
   </section>
