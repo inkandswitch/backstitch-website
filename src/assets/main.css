@@ -44,21 +44,22 @@
   h4,
   h5,
   h6 {
-    @apply font-semibold;
+    @apply font-light;
     @apply font-serif;
   }
 
   h1 {
+    @apply font-semibold;
     @apply mb-4 text-4xl text-center;
   }
 
   h2 {
-    @apply mb-3 text-2xl;
+    @apply mb-3 text-3xl text-center;
     @apply font-light;
   }
 
   h3 {
-    @apply mb-1 text-lg;
+    @apply mb-1 text-2xl;
   }
   .button-primary {
     @apply button;

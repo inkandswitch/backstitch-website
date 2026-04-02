@@ -3,13 +3,10 @@
 <template>
   <section class="text-content">
     <h2>How It Works</h2>
-    <div class="flex flex-col sm:flex-row gap-5">
-      <img class="order-first" src="https://placekittens.com/300/200" />
-      <p>
-        Backstitch works alongside existing version control systems like Git. It acts as a layer
-        <em>on top</em> of your existing version control system, providing real-time functionality.
-      </p>
-    </div>
+    <h3>Sync in Real-Time</h3>
+    <p>When you save a scene or resource, your changes are immediately pushed to everyone else.</p>
+    <h3>Branch. Merge. Revert.</h3>
+    <p>Blah blah blah</p>
     <div class="flex flex-col sm:flex-row gap-5">
       <img class="order-last" src="https://placekittens.com/200/200" />
       <p>
