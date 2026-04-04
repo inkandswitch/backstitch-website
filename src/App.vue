@@ -16,7 +16,7 @@ const year = new Date().getFullYear()
         <RouterLink to="/getting-started" class="button">Get Started</RouterLink>
       </header>
 
-      <main class="content-box mt-0 mb-auto">
+      <main class="mt-0 mb-auto w-full">
         <RouterView />
       </main>
 

@@ -60,20 +60,6 @@ class DropTask extends VisitTask {
   }
 }
 
-class WaitTask extends InteractorTask {
-  time: number
-  constructor(time: number) {
-    super()
-    this.time = time
-  }
-  update(delta: number, _interactor: Interactor): void {
-    this.time -= delta
-    if (this.time <= 0) {
-      this.finish()
-    }
-  }
-}
-
 class Interactor extends Entity {
   position: Vector2
   speed: number

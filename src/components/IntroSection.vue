@@ -3,7 +3,7 @@ import SyncSimulation from './SyncSimulation.vue'
 </script>
 
 <template>
-  <section class="text-content mb-10">
+  <section class="text-content mb-10 content-box">
     <h1 class="mb-5.5">Real-Time Version Control for Godot</h1>
     <h2 class="text-center text-pretty mb-7.5">
       <strong class="font-semibold">Backstitch</strong> enables fast collaboration for dev teams,

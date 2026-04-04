@@ -2,7 +2,7 @@
 
 @theme {
   --font-sans:
-    'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'PT Sans', 'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
     'Segoe UI Symbol', 'Noto Color Emoji';
   --font-serif: 'Zilla Slab', serif;
   --color-secondary-50: var(--color-amber-50);
@@ -62,7 +62,7 @@
   }
 
   h3 {
-    @apply mb-1 sm:text-2xl text-xl;
+    @apply mb-1 text-2xl;
   }
   .button-primary {
     @apply button;

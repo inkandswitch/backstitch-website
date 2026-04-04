@@ -138,7 +138,7 @@ const props = defineProps(['color'])
     <div :class="`border-${color}-500`" class="border-b-2 mb-2 pb-2 mx-1 border-dashed">
       <!-- fill-primary-500, fill-secondary-500 -->
       Changes for <BranchIcon :class="`fill-${color}-500`" class="inline-block w-4" />
-      <span class="font-semibold ml-2">Add quest level</span>
+      <span class="font-semibold ml-2">Add fetch quest</span>
     </div>
     <div class="flex flex-row relative items-stretch">
       <!-- border-primary-500, border-secondary-500 -->
