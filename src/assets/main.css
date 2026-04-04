@@ -53,16 +53,16 @@
 
   h1 {
     @apply font-semibold;
-    @apply mb-4 text-4xl text-center;
+    @apply mb-4 sm:text-4xl text-3xl text-center;
   }
 
   h2 {
-    @apply mb-3 text-3xl text-center;
+    @apply mb-3 sm:text-3xl text-2xl text-center;
     @apply font-light;
   }
 
   h3 {
-    @apply mb-1 text-2xl;
+    @apply mb-1 sm:text-2xl text-xl;
   }
   .button-primary {
     @apply button;

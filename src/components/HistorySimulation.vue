@@ -126,7 +126,7 @@ onUnmounted(() => {
       <BranchIcon class="w-4 h-4 inline-block fill-secondary-500 mr-2" />main
     </p>
     <div class="w-full border-b-2 mb-2 border-dashed border-secondary-500"></div>
-    <div class="pl-4 h-full overflow-hidden relative">
+    <div class="pl-4 h-full overflow-hidden relative anchor-none">
       <TransitionGroup name="list" tag="ul" class="absolute top-0 left-0 w-full h-full">
         <li v-for="item in items" :key="item.index">
           <MergeIcon class="w-4 h-4 inline-block fill-secondary-500" v-if="item.icon == 'merge'" />
@@ -144,6 +144,10 @@ onUnmounted(() => {
 </template>
 
 <style scoped>
+.anchor-none {
+  overflow-anchor: none;
+}
+
 .list-move, /* apply transition to moving elements */
 .list-enter-active,
 .list-leave-active {
