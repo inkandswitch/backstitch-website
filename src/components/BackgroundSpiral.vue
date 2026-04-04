@@ -33,7 +33,7 @@
 
 <style scoped>
 .cls-1 {
-  stroke-dasharray: 0 0 11.95 11.95;
+  stroke-dasharray: 0 0 12 12;
 }
 
 .cls-1,
@@ -46,17 +46,25 @@
   stroke-width: 2px;
   stroke: var(--color-primary-900);
   vector-effect: non-scaling-stroke;
+  animation: dashMove 8s linear infinite;
+  stroke-linecap: round;
+}
+
+@keyframes dashMove {
+  to {
+    stroke-dashoffset: -24;
+  }
 }
 
 .cls-2 {
-  stroke-dasharray: 0 0 11.81 11.81;
+  stroke-dasharray: 0 0 12 12;
 }
 
 .cls-3 {
-  stroke-dasharray: 0 0 11.97 11.97;
+  stroke-dasharray: 0 0 12 12;
 }
 
 .cls-5 {
-  stroke-dasharray: 0 0 11.99 11.99;
+  stroke-dasharray: 0 0 12 12;
 }
 </style>

@@ -18,7 +18,6 @@
           contribute equally to every project!
         </p>
       </div>
-      <img src="https://placekittens.com/300/200" class="float-right clear-both" />
     </div>
   </section>
 </template>

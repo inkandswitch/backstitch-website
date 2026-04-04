@@ -1,25 +1,10 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, useTemplateRef } from 'vue'
+import { onMounted, onUnmounted, useTemplateRef } from 'vue'
 import Vector2 from '@rawify/vector2'
-import { path } from 'ghost-cursor'
-import type { TimedVector, Vector } from 'ghost-cursor/lib/math'
 import GodotIcon from './icons/GodotIcon.vue'
-import colors from 'tailwindcss/colors'
-
-function moveTowards(delta: number, speed: number, position: Vector2, target: Vector2): Vector2 {
-  const d = target.sub(position)
-
-  const distance = target.distance(position)
-
-  // If already at target or will overshoot, snap to target
-  const maxStep = speed * delta
-  if (distance <= maxStep || distance === 0) {
-    return target
-  }
-
-  const t = maxStep / distance
-  return position.add(d.scale(t))
-}
+import StitchedBorder from './StitchedBorder.vue'
+import { easeInOutCubic, Entity, randomDir, Simulation } from '@/utils/simulation-engine'
+import { Axis, Shape } from '@/utils/simulation-components'
 
 abstract class InteractorTask {
   finished: boolean
@@ -31,23 +16,6 @@ abstract class InteractorTask {
   protected finish() {
     this.finished = true
   }
-}
-
-function easeInOutCubic(x: number): number {
-  return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2
-}
-
-function easeOutCubic(x: number): number {
-  return 1 - Math.pow(1 - x, 3)
-}
-
-function randomDir(): Vector2 {
-  const angle = Math.random() * 2 * Math.PI
-  return new Vector2(Math.cos(angle), Math.sin(angle))
-}
-
-function remap(value: number, low1: number, high1: number, low2: number, high2: number) {
-  return low2 + ((high2 - low2) * (value - low1)) / (high1 - low1)
 }
 
 class VisitTask extends InteractorTask {
@@ -106,11 +74,6 @@ class WaitTask extends InteractorTask {
   }
 }
 
-abstract class Entity {
-  abstract update(delta: number): void
-  abstract draw(ctx: CanvasRenderingContext2D): void
-}
-
 class Interactor extends Entity {
   position: Vector2
   speed: number
@@ -151,190 +114,15 @@ class Interactor extends Entity {
 
   draw(ctx: CanvasRenderingContext2D) {
     ctx.translate(this.position.x, this.position.y)
-    const dpr = window.devicePixelRatio || 1
-    const factor = (0.05 * 16) / (ctx.canvas.width / dpr)
+    const factor = (0.05 * 16) / ctx.canvas.width
     ctx.scale(factor, factor)
     const styles = getComputedStyle(document.documentElement)
     const color = styles.getPropertyValue(`--color-${props.color}-500`)
     ctx.fillStyle = color
     const cursor = new Path2D(
-      'm 80 470 l 79 -110 h 170 L 80 164 v 306 Z M 311 800 L 166 488 L 0 720 v -720 l 560 440 H 276 l 144 309 l -109 51 Z M 159 360 Z',
+      'M 311 800 L 166 488 L 0 720 v -720 l 560 440 H 276 l 144 309 l -109 51 Z',
     )
     ctx.fill(cursor)
-  }
-}
-
-class Shape extends Entity {
-  position: Vector2
-  size: number
-  type: string
-
-  // for easing
-  startPosition = new Vector2(0, 0)
-  targetPosition = new Vector2(0, 0)
-  time: number = 0
-  progress: number = 0
-
-  constructor(position: Vector2, type: string) {
-    super()
-    this.position = position
-    this.type = type
-    this.size = 4
-  }
-
-  update(delta: number) {
-    if (this.progress < this.time) {
-      this.progress += delta
-      if (this.progress > this.time) this.progress = this.time
-      this.position = this.startPosition.lerp(
-        this.targetPosition,
-        easeOutCubic(this.progress / this.time),
-      )
-    }
-  }
-
-  draw(ctx: CanvasRenderingContext2D) {
-    const dpr = window.devicePixelRatio || 1
-    const factor = 16 / (ctx.canvas.width / dpr)
-    ctx.lineWidth = 4 * factor
-    ctx.globalAlpha = this.progress < this.time ? 0.3 : 1
-
-    const progress = this.progress / this.time
-    if (progress < 0.2) {
-      ctx.globalAlpha = remap(progress, 0, 0.2, 1, 0.3)
-    }
-    if (progress > 0.8) {
-      ctx.globalAlpha = remap(progress, 0.8, 1, 0.3, 1)
-    }
-
-    if (this.type == 'circle') {
-      ctx.strokeStyle = 'oklch(76.5% 0.177 163.223)'
-      ctx.beginPath()
-      ctx.arc(this.position.x, this.position.y, this.size / 2, 0, 2 * Math.PI)
-      ctx.closePath()
-      ctx.stroke()
-    } else if (this.type == 'square') {
-      ctx.strokeStyle = 'oklch(59.1% 0.293 322.896)'
-      const size = this.size * 0.8
-      ctx.strokeRect(this.position.x - size / 2, this.position.y - size / 2, size, size)
-    } else if (this.type == 'triangle') {
-      ctx.strokeStyle = 'oklch(79.5% 0.184 86.047)'
-      ctx.beginPath()
-      const height = (this.size * Math.sqrt(3)) / 2
-      ctx.moveTo(this.position.x - this.size / 2, this.position.y + height / 3)
-      ctx.lineTo(this.position.x + this.size / 2, this.position.y + height / 3)
-      ctx.lineTo(this.position.x, this.position.y - (2 * height) / 3)
-      ctx.closePath()
-      ctx.stroke()
-    }
-  }
-
-  moveTo(position: Vector2, time: number) {
-    this.progress = 0
-    this.time = time
-    this.startPosition = this.position
-    this.targetPosition = position
-  }
-}
-
-abstract class Simulation {
-  world: Entity[]
-  lastTime: number | null
-  animationId: number
-  canvas: HTMLCanvasElement
-  ctx: CanvasRenderingContext2D
-
-  constructor(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) {
-    this.world = []
-    this.lastTime = null
-    this.animationId = -1
-    this.canvas = canvas
-    this.ctx = ctx
-    this.animate = this.animate.bind(this)
-    this.resizeCanvas = this.resizeCanvas.bind(this)
-  }
-
-  private animate(now: number) {
-    this.animationId = requestAnimationFrame(this.animate)
-    if (!this.canvas || !this.ctx) return
-
-    if (this.lastTime == null) {
-      this.lastTime = now
-      return
-    }
-
-    const delta = (now - this.lastTime) / 1000
-    this.lastTime = now
-
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
-
-    this.update(delta)
-
-    for (const e of this.world) {
-      e.update(delta)
-      this.ctx.save()
-
-      // we setup our coordinate space here.
-      // origin is at 0, 0. Units are based responsively on the canvas height.
-      // the whole canvas is arbitrarily 25 units high.
-      const scale = this.ctx.canvas.height / 25
-      this.ctx.setTransform(
-        scale,
-        0, // scale X
-        0,
-        scale, // scale Y
-        this.ctx.canvas.width / 2, // translate X to center
-        this.ctx.canvas.height / 2, // translate Y to center
-      )
-
-      e.draw(this.ctx)
-      this.ctx.restore()
-    }
-  }
-
-  start() {
-    window.addEventListener('resize', this.resizeCanvas)
-
-    console.log('start')
-    this.animationId = requestAnimationFrame(this.animate)
-    this.resizeCanvas()
-  }
-
-  protected update(_delta: number): void {}
-
-  stop() {
-    window.removeEventListener('resize', this.resizeCanvas)
-    cancelAnimationFrame(this.animationId)
-  }
-
-  private resizeCanvas() {
-    const dpr = window.devicePixelRatio || 1
-    const container = this.ctx.canvas.parentElement
-    if (container == null) return
-    this.canvas.width = container.clientWidth * dpr
-    this.canvas.height = container.clientHeight * dpr
-  }
-}
-
-class Axis extends Entity {
-  update(_delta: number): void {}
-  draw(ctx: CanvasRenderingContext2D): void {
-    const dpr = window.devicePixelRatio || 1
-    const factor = 16 / (ctx.canvas.width / dpr)
-    ctx.lineWidth = 2 * factor
-    ctx.strokeStyle = '#2d272e'
-
-    ctx.beginPath()
-    ctx.moveTo(-1000, 4)
-    ctx.lineTo(1000, 4)
-    ctx.closePath()
-    ctx.stroke()
-
-    ctx.beginPath()
-    ctx.moveTo(4, -1000)
-    ctx.lineTo(4, 1000)
-    ctx.closePath()
-    ctx.stroke()
   }
 }
 
@@ -342,7 +130,7 @@ class ChangeSimulation extends Simulation {
   shapes: Shape[] = []
   interactor: Interactor
   constructor(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) {
-    super(canvas, ctx)
+    super(canvas, ctx, true)
 
     this.interactor = new Interactor()
     this.shapes.push(
@@ -357,7 +145,7 @@ class ChangeSimulation extends Simulation {
       ),
     )
 
-    this.world.push(new Axis())
+    this.world.push(new Axis(props.color))
     this.world.push(...this.shapes)
     this.world.push(this.interactor)
   }
@@ -402,7 +190,7 @@ class ChangeSimulation extends Simulation {
 
 let simulation: ChangeSimulation | null = null
 const canvas = useTemplateRef<HTMLCanvasElement>('canvas')
-const dashedRect = useTemplateRef<SVGElement>('dashed-rect')
+const border = useTemplateRef('border')
 const saveIcon = useTemplateRef<SVGElement>('save-icon')
 
 onMounted(() => {
@@ -434,10 +222,7 @@ defineExpose({
     simulation?.moveShapes()
   },
   syncShapes: (data: ShapeData) => {
-    dashedRect.value?.getAnimations().forEach((anim) => {
-      anim.cancel()
-      anim.play()
-    })
+    border.value?.spin()
     window.setTimeout(() => {
       simulation?.syncShapes(data)
     }, 300)
@@ -460,16 +245,16 @@ defineExpose({
 
 <template>
   <!-- text-primary-500 text-secondary-500 -->
-  <div :class="`text-${color}-500`" class="p-2 w-full font-mono relative">
-    <div class="mx-2 my-2 text-lg flex gap-2 items-center">
+  <div :class="`text-${color}-500`" class="w-full font-mono relative flex flex-col">
+    <div class="mx-3 mt-3 mb-2 text-lg flex gap-2 items-center">
       <!-- fill-primary-500 fill-secondary-500 -->
       <GodotIcon :color="`fill-${color}-500`" width="24" height="24" />
       {{ name }}
     </div>
     <!-- border-primary-500 border-secondary-500 -->
     <div :class="`border-${color}-500`" class="border-b-2 border-dashed mx-2"></div>
-    <div class="w-full aspect-square">
-      <canvas ref="canvas" class="canvas w-full h-full"></canvas>
+    <div class="w-full relative grow aspect-square max-h-[calc(40vh+4rem)] shrink">
+      <canvas ref="canvas" class="canvas absolute top-0 left-0 right-0 bottom-0"></canvas>
     </div>
     <div
       class="absolute w-[70%] h-[70%] max-w-30 max-h-30 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
@@ -488,48 +273,12 @@ defineExpose({
         />
       </svg>
     </div>
-    <svg
-      class="w-full h-full top-0 left-0 absolute"
-      viewBox="0 0 100 100"
-      preserveAspectRatio="none"
-      ref="svg"
-    >
-      <!-- stroke-primary-500 stroke-secondary-500 -->
-      <rect
-        x="1"
-        y="1"
-        rx="4"
-        ry="4"
-        width="98"
-        height="98"
-        fill="none"
-        class="dashed-rect"
-        :class="`stroke-${color}-500`"
-        stroke-width="2"
-        stroke-dasharray="8 6"
-        vector-effect="non-scaling-stroke"
-        ref="dashed-rect"
-      />
-    </svg>
+
+    <StitchedBorder ref="border" :color="color" />
   </div>
 </template>
 
 <style scoped>
-.dashed-rect {
-  stroke-dashoffset: 0;
-  animation: dashMove 1s ease-in-out forwards;
-  animation-play-state: paused;
-}
-
-@keyframes dashMove {
-  from {
-    stroke-dashoffset: 0;
-  }
-  to {
-    stroke-dashoffset: 70;
-  }
-}
-
 .save-icon {
   animation: appear 1s ease-in-out forwards;
   animation-play-state: paused;

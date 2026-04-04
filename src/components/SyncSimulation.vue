@@ -18,18 +18,8 @@ function nerysFinished() {
 }
 </script>
 <template>
-  <div class="flex gap-2 max-w-250 m-auto">
-    <ChangeSimulation
-      ref="jadzia"
-      name="Jadzia"
-      color="secondary"
-      @finished="jadziaFinished"
-    ></ChangeSimulation>
-    <ChangeSimulation
-      ref="nerys"
-      name="Nerys"
-      color="primary"
-      @finished="nerysFinished"
-    ></ChangeSimulation>
+  <div class="flex gap-8 m-auto">
+    <ChangeSimulation ref="jadzia" name="Jadzia" color="secondary" @finished="jadziaFinished" />
+    <ChangeSimulation ref="nerys" name="Nerys" color="primary" @finished="nerysFinished" />
   </div>
 </template>
