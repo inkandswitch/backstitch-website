@@ -1,6 +1,6 @@
-# patchwork-website
+# Backstitch Website
 
-This template should help get you started developing with Vue 3 in Vite.
+This is a website for [Backstitch](https://github.com/inkandswitch/patchwork-godot-plugin/), a Godot plugin for real-time version control.
 
 ## Recommended IDE Setup
 
