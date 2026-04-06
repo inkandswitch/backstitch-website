@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <section class="text-content content-box mt-8 mb-8">
+  <section class="content-box text-content mt-8 mb-8">
     <h2 class="clear-both text-left mb-8">Our Team</h2>
     <div>
       <p>

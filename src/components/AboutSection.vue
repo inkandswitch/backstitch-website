@@ -8,7 +8,7 @@ import GitIcon from './icons/GitIcon.vue'
 </script>
 
 <template>
-  <section class="text-content flex gap-8 my-8 content-box">
+  <section class="flex gap-8 my-8 content-box">
     <div class="flex flex-col justify-around">
       <div>
         <h3>Sync in Real-Time</h3>
@@ -39,7 +39,7 @@ import GitIcon from './icons/GitIcon.vue'
     </div>
   </section>
   <div class="bg-[rgba(0,0,0,0.2)] pb-16 pt-16 mt-16">
-    <section class="text-content content-box">
+    <section class="content-box">
       <h2 class="mb-8 text-left">Using Backstitch</h2>
       <div class="use-grid sm:grid">
         <ServerIcon class="fill-secondary-500" />
@@ -57,8 +57,8 @@ import GitIcon from './icons/GitIcon.vue'
         <RocketIcon class="fill-secondary-500" />
         <p>
           <strong>Launcher</strong>: For the alpha, simply add our
-          <RouterLink to="/getting-started">launcher</RouterLink> into your testing project, and run
-          it. It will download everything you need!
+          <RouterLink to="/docs">launcher</RouterLink> into your testing project, and run it. It
+          will download everything you need!
         </p>
         <GodotIcon color="fill-secondary-500" class="p-1" />
         <p>

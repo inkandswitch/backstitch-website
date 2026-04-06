@@ -1,6 +1,33 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import OnboardingView from '../views/OnboardingView.vue'
+import DocsView from '../views/DocsView.vue'
+import { pageTree, type Doc } from '@/content/docs_pages'
+import DocPageView from '@/views/DocPageView.vue'
+
+function generateDocsRoutes(docs: Doc[]) {
+  const docsRoutes: RouteRecordRaw[] = []
+  function generate(docs: Doc[], route: string) {
+    for (const doc of docs) {
+      docsRoutes.push({
+        path: route + '/' + doc.route,
+        name: doc.name,
+        component: DocPageView,
+        props: {
+          file: doc.file,
+        },
+        meta: {
+          title: doc.name,
+        },
+      })
+      if (doc.children) generate(doc.children, route + '/' + doc.route)
+    }
+  }
+  generate(docs, '/docs')
+
+  return docsRoutes
+}
+
+console.log(generateDocsRoutes(pageTree))
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -15,13 +42,10 @@ const router = createRouter({
       },
     },
     {
-      path: '/getting-started',
-      name: 'onboarding',
-      component: OnboardingView,
-      meta: {
-        title: 'Getting Started | Backstitch',
-        description: 'Getting started with Backstitch.',
-      },
+      path: '/docs',
+      name: 'docs',
+      component: DocsView,
+      children: generateDocsRoutes(pageTree),
     },
     {
       path: '/:pathMatch(.*)*',

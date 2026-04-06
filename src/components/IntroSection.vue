@@ -3,7 +3,7 @@ import SyncSimulation from './SyncSimulation.vue'
 </script>
 
 <template>
-  <section class="text-content mb-10 content-box">
+  <section class="mb-10 content-box">
     <h1 class="mb-5.5">Real-Time Version Control for Godot</h1>
     <h2 class="text-center text-pretty mb-7.5">
       <strong class="font-semibold">Backstitch</strong> enables fast collaboration for dev teams,
@@ -14,7 +14,7 @@ import SyncSimulation from './SyncSimulation.vue'
     </p>
     <div class="flex justify-center gap-5 sm:gap-20 flex-col sm:flex-row items-center text-xl">
       <div class="flex flex-1 justify-end">
-        <RouterLink class="button" to="/getting-started">Try the alpha!</RouterLink>
+        <RouterLink class="button" to="/docs">Try the alpha!</RouterLink>
       </div>
       <div class="flex flex-1 justify-start">
         <a

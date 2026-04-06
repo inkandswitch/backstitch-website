@@ -201,6 +201,9 @@ const props = defineProps(['color'])
 </template>
 
 <style scoped>
+li ul li {
+  margin-left: 1rem;
+}
 .property-grid {
   /* display: grid;
   grid-template-columns: 100px 1fr;

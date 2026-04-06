@@ -36,6 +36,10 @@
 }
 
 @layer base {
+  body {
+    overflow-x: hidden;
+  }
+
   html,
   body {
     @apply bg-mauve-900 text-neutral-200;
@@ -73,28 +77,50 @@
     @apply border-secondary-500 border-2 text-secondary-500;
   }
 
-  .text-content {
-    @apply max-w-300 m-0 mx-auto;
+  p,
+  .docs ul {
+    @apply mb-2 text-lg;
   }
 
-  p {
-    @apply mb-2;
+  .docs p {
+    @apply mb-4;
+  }
+
+  .docs ul li {
+    @apply list-disc ml-12 mb-2;
   }
 
   .content-box {
     @apply max-w-246 mx-auto px-4;
   }
 
-  p a {
-    @apply text-primary-500 hover:text-primary-300 active:text-primary-700 transition-colors duration-100;
-    @apply underline;
+  .text-content {
+    @apply max-w-200 m-0 mx-auto;
   }
 
-  li ul li {
-    @apply ml-4;
+  p a,
+  .docs a {
+    @apply text-primary-500 hover:text-primary-300 active:text-primary-700 transition-colors duration-100;
+    @apply underline;
   }
 
   .inline-size {
     container-type: size;
   }
+}
+
+.docs h1 {
+  @apply mb-4 text-3xl text-left;
+}
+
+.docs h2 {
+  @apply mb-4 text-2xl text-left;
+}
+
+.docs h3 {
+  @apply mb-4 text-xl text-left;
+}
+
+.docs h4 {
+  @apply mb-4 text-lg text-left;
 }

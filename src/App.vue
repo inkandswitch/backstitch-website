@@ -5,18 +5,20 @@ const year = new Date().getFullYear()
 </script>
 
 <template>
-  <div class="relative">
+  <div class="relative main-container">
     <div class="overflow-hidden absolute top-0 left-0 bottom-0 right-0 hidden sm:block opacity-50">
       <BackgroundSpiral class="absolute top-0 -left-1/8 w-1/4 xl:-left-1/6 lg:w-1/3" />
       <BackgroundSpiral class="absolute top-0 -right-1/8 w-1/4 xl:-right-1/6 xl:w-1/3 rotate-180" />
     </div>
-    <div class="flex flex-col min-h-screen justify-between items-start relative">
+    <div class="flex flex-col min-h-screen justify-between items-start relative w-full">
       <header class="content-box my-8 flex items-center justify-between w-full">
         <RouterLink to="/" class="block">Backstitch</RouterLink>
-        <RouterLink to="/getting-started" class="button">Get Started</RouterLink>
+        <RouterLink to="/docs" class="button" v-if="!$route.fullPath.startsWith('/docs')"
+          >Get Started</RouterLink
+        >
       </header>
 
-      <main class="mt-0 mb-auto w-full">
+      <main class="relative mt-0 grow w-full flex flex-col">
         <RouterView />
       </main>
 
