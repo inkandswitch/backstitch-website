@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import MarkdownIt from 'markdown-it'
 import { computed } from 'vue'
-import { pages } from '@/content/docs-pages'
+import { pages, images } from '@/content/docs-pages'
 import path from 'path-browserify-esm'
 import { useRoute } from 'vue-router'
 import router from '@/router'
@@ -26,6 +26,27 @@ function fixLink(url: string): string {
   return url
 }
 
+function fixImage(url: string): string {
+  let mdPath = ''
+  for (const [thisPath, page] of Object.entries(pages)) {
+    if (page.route == route.fullPath) {
+      mdPath = thisPath
+    }
+  }
+
+  const r = new RegExp('^(?:[a-z+]+:)?//', 'i')
+  if (!r.test(url)) {
+    if (url.endsWith('.png')) {
+      const res = path.join('/src/content', mdPath, '../', url)
+      if (images[path.resolve(res)]) {
+        return images[path.resolve(res)] ?? url
+      }
+    }
+    return url
+  }
+  return url
+}
+
 // Simple markdown-it plugin to parse ./installation.md or whatever into a link to /docs/installation
 md.use((md) => {
   md.core.ruler.push('routerlinks', (state) => {
@@ -33,9 +54,10 @@ md.use((md) => {
       if (type !== 'inline') continue
       if (!children) continue
       for (const child of children) {
-        if (child.type !== 'link_open') continue
-
-        child.attrSet('href', fixLink(child.attrGet('href') || '#'))
+        if (child.type === 'link_open') child.attrSet('href', fixLink(child.attrGet('href') || '#'))
+        if (child.tag == 'img') {
+          child.attrSet('src', fixImage(child.attrGet('src') || '#'))
+        }
       }
     }
   })
@@ -43,7 +65,6 @@ md.use((md) => {
 
 const html = computed(() => {
   const page = pages[props.file]!
-  console.log(page)
   return md.render(page.content)
 })
 

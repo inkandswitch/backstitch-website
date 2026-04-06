@@ -98,17 +98,20 @@ const content = import.meta.glob<string>('/src/content/docs/**/*.md', {
   query: '?raw',
 })
 
-console.log('content', content)
+export const images = import.meta.glob<string>('/src/content/docs/**/*.png', {
+  eager: true,
+  import: 'default',
+})
 
 function flattenPagetree(tree: Doc[], route: string) {
   for (const page of tree) {
     pages[page.file] = {
       content: content['/src/content' + page.file.slice(1)]!,
-      route,
+      route: route + '/' + page.route,
       name: page.name,
     }
     if (page.children) flattenPagetree(page.children, route + '/' + page.route)
   }
 }
 
-flattenPagetree(pageTree, 'docs')
+flattenPagetree(pageTree, '/docs')
