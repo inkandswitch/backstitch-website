@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type Doc } from '@/content/docs_pages'
+import { type Doc } from '@/content/docs-pages'
 defineProps<{
   doc: Doc
   parentRoute: string

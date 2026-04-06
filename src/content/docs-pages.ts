@@ -92,10 +92,13 @@ type Page = {
 
 export const pages: { [key: string]: Page } = {}
 
-const content = import.meta.glob<string>('@/content/docs/**/*.md', {
+const content = import.meta.glob<string>('/src/content/docs/**/*.md', {
   eager: true,
-  as: 'raw',
+  import: 'default',
+  query: '?raw',
 })
+
+console.log('content', content)
 
 function flattenPagetree(tree: Doc[], route: string) {
   for (const page of tree) {

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import MarkdownIt from 'markdown-it'
 import { computed } from 'vue'
-import { pages } from '@/content/docs_pages'
+import { pages } from '@/content/docs-pages'
 import path from 'path-browserify-esm'
 import { useRoute } from 'vue-router'
 import router from '@/router'
@@ -43,6 +43,7 @@ md.use((md) => {
 
 const html = computed(() => {
   const page = pages[props.file]!
+  console.log(page)
   return md.render(page.content)
 })
 

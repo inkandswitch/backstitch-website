@@ -7,11 +7,17 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  assetsInclude: ['**/*.md'],
   plugins: [vue(), vueDevTools(), tailwindcss()],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
+    },
+  },
+  optimizeDeps: {
+    esbuildOptions: {
+      loader: {
+        '.md': 'text',
+      },
     },
   },
 })
