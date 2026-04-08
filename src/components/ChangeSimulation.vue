@@ -241,23 +241,23 @@ defineExpose({
     <div :class="`border-${color}-500`" class="border-b-2 border-dashed mx-2"></div>
     <div class="w-full relative grow aspect-square max-h-[calc(40vh+4rem)] shrink">
       <canvas ref="canvas" class="canvas absolute top-0 left-0 right-0 bottom-0"></canvas>
-    </div>
-    <div
-      class="absolute w-[70%] h-[70%] max-w-30 max-h-30 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        ref="save-icon"
-        class="save-icon w-full h-full"
-        viewBox="0 0 448 512"
+      <div
+        class="absolute w-[70%] h-[70%] max-w-30 max-h-30 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
       >
-        <!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc. -->
-        <!-- fill-primary-600 fill-secondary-600 -->
-        <path
-          :class="`fill-${color}-600`"
-          d="M64 32C28.7 32 0 60.7 0 96L0 416c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-242.7c0-17-6.7-33.3-18.7-45.3L352 50.7C340 38.7 323.7 32 306.7 32L64 32zm32 96c0-17.7 14.3-32 32-32l160 0c17.7 0 32 14.3 32 32l0 64c0 17.7-14.3 32-32 32l-160 0c-17.7 0-32-14.3-32-32l0-64zM224 288a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"
-        />
-      </svg>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          ref="save-icon"
+          class="save-icon w-full h-full"
+          viewBox="0 0 448 512"
+        >
+          <!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc. -->
+          <!-- fill-primary-600 fill-secondary-600 -->
+          <path
+            :class="`fill-${color}-600`"
+            d="M64 32C28.7 32 0 60.7 0 96L0 416c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-242.7c0-17-6.7-33.3-18.7-45.3L352 50.7C340 38.7 323.7 32 306.7 32L64 32zm32 96c0-17.7 14.3-32 32-32l160 0c17.7 0 32 14.3 32 32l0 64c0 17.7-14.3 32-32 32l-160 0c-17.7 0-32-14.3-32-32l0-64zM224 288a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"
+          />
+        </svg>
+      </div>
     </div>
 
     <StitchedBorder ref="border" :color="color" />

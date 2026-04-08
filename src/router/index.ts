@@ -16,7 +16,7 @@ function generateDocsRoutes(docs: Doc[]) {
           file: doc.file,
         },
         meta: {
-          title: doc.name,
+          title: doc.name + ' | Backstitch',
         },
       })
       if (doc.children) generate(doc.children, route + '/' + doc.route)

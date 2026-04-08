@@ -39,8 +39,8 @@ defineExpose({
       <rect
         x="1"
         y="1"
-        :width="width - 2"
-        :height="height - 2"
+        :width="Math.max(width - 2, 0)"
+        :height="Math.max(height - 2, 0)"
         rx="16"
         ry="16"
         fill="none"

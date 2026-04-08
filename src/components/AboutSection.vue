@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import DiffSimulation from './DiffSimulation.vue'
 import HistorySimulation from './HistorySimulation.vue'
-import GodotIcon from './icons/GodotIcon.vue'
-import RocketIcon from './icons/RocketIcon.vue'
 import ServerIcon from './icons/ServerIcon.vue'
 import GitIcon from './icons/GitIcon.vue'
+import ArchiveIcon from './icons/ArchiveIcon.vue'
+import ShareIcon from './icons/ShareIcon.vue'
 </script>
 
 <template>
@@ -21,7 +21,7 @@ import GitIcon from './icons/GitIcon.vue'
         <h3>Branch. Merge. Revert.</h3>
         <p>
           Create branches for features, or for teams. When you merge, conflicts are automatically
-          handled by <a href="https://automerge.org/" target="_blank" rel="nofollow">Automerge</a>.
+          handled by <a href="https://automerge.org/" target="_blank">Automerge</a>.
         </p>
       </div>
       <DiffSimulation class="w-full block sm:hidden my-8" color="primary" />
@@ -42,7 +42,7 @@ import GitIcon from './icons/GitIcon.vue'
     <section class="content-box">
       <h2 class="mb-8 text-left">Using Backstitch</h2>
       <div class="use-grid sm:grid">
-        <ServerIcon class="fill-secondary-500" />
+        <ServerIcon class="fill-secondary-500 p-0.5" />
         <p>
           <strong>Host, or Join</strong>: Backstitch syncs with a remote server, storing your data
           on the cloud. For alpha testing, we provide a public sync server that anyone can access.
@@ -54,16 +54,17 @@ import GitIcon from './icons/GitIcon.vue'
           systems. Take advantage of Backstitch's easy real-time sync for daily collaboration. Then,
           for larger changes, commit and push with Git.
         </p>
-        <RocketIcon class="fill-secondary-500" />
+        <ShareIcon class="fill-secondary-500 p-1" />
         <p>
-          <strong>Launcher</strong>: For the alpha, simply add our
-          <RouterLink to="/docs">launcher</RouterLink> into your testing project, and run it. It
-          will download everything you need!
+          <strong>Share Games via URL</strong>: Once you sync your project with a server, you can
+          share a link to your game. Select a branch, and play it directly in your browser! (Coming
+          soon!)
         </p>
-        <GodotIcon color="fill-secondary-500" class="p-1" />
+        <ArchiveIcon class="fill-secondary-500 p-1" />
         <p>
-          <strong>Engine</strong>: We currently rely on a custom development build of Godot. In the
-          near future, we'll be available in the Asset Library!
+          <strong>Local-First</strong>: Backstitch can be used both offline and online. A server
+          connection is useful for collaboration, but your changes and history are always stored on
+          your machine first.
         </p>
       </div>
     </section>

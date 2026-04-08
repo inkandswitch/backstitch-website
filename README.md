@@ -1,6 +1,14 @@
 # Backstitch Website
 
-This is a website for [Backstitch](https://github.com/inkandswitch/patchwork-godot-plugin/), a Godot plugin for real-time version control.
+This is a website for [Backstitch](https://github.com/inkandswitch/backstitch/), a Godot plugin for real-time version control.
+
+## Project Structure
+
+The Backstitch Website is a static site that uses Vue.js to render everything. Normal pages and compnents are stored in `src/views` and `src/components` respectively. Backstitch's docs are authored in `src/content/docs` and indexed in `src/content/docs-pages.ts`.
+
+For CSS, we use Tailwind for most things, as well as a main CSS file for global styles. Occasionally, we put scoped styles inside individual components that need some bespoke behavior that would be difficult or impossible with Tailwind.
+
+For local and production builds, see below for IDE setup and scripts.
 
 ## Recommended IDE Setup
 

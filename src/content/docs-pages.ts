@@ -35,45 +35,50 @@ export const pageTree: Doc[] = [
   },
   {
     name: 'Server Setup',
-    file: './docs/server-setup/index.md',
+    file: './docs/server/index.md',
     route: 'server',
     children: [
       {
         name: 'Alpha Test Server',
-        file: './docs/server-setup/alpha-server.md',
+        file: './docs/server/alpha-server.md',
         route: 'alpha-server',
       },
       {
         name: 'Host a Server',
-        file: './docs/server-setup/host.md',
+        file: './docs/server/host.md',
         route: 'host',
       },
     ],
   },
   {
-    name: 'Using Backstitch',
-    file: './docs/usage/index.md',
-    route: 'usage',
+    name: 'Tutorial',
+    file: './docs/tutorial/index.md',
+    route: 'tutorial',
     children: [
       {
         name: 'Project Setup',
-        file: './docs/usage/project-setup.md',
+        file: './docs/tutorial/project-setup.md',
         route: 'project-setup',
       },
       {
         name: 'Share Your Project',
-        file: './docs/usage/sharing.md',
+        file: './docs/tutorial/sharing.md',
         route: 'sharing',
       },
       {
         name: 'Making Changes',
-        file: './docs/usage/making-changes.md',
+        file: './docs/tutorial/making-changes.md',
         route: 'making-changes',
       },
       {
         name: 'Branch and Merge',
-        file: './docs/usage/branches.md',
+        file: './docs/tutorial/branches.md',
         route: 'branches',
+      },
+      {
+        name: 'Reverting Changes',
+        file: './docs/tutorial/revert.md',
+        route: 'revert',
       },
     ],
   },
@@ -90,7 +95,12 @@ type Page = {
   name: string
 }
 
-export const pages: { [key: string]: Page } = {}
+export const pages = new Map<string, Page>()
+
+export type ImageMetadata = {
+  width: number
+  height: number
+}
 
 const content = import.meta.glob<string>('/src/content/docs/**/*.md', {
   eager: true,
@@ -101,15 +111,24 @@ const content = import.meta.glob<string>('/src/content/docs/**/*.md', {
 export const images = import.meta.glob<string>('/src/content/docs/**/*.png', {
   eager: true,
   import: 'default',
+  // calculated from CSS max-width; if that changes, change this.
+  // may look blurry on highdpi screens or zoom
+  query: `?format=webp&w=480`,
+})
+
+export const imageMetadata = import.meta.glob<ImageMetadata>('/src/content/docs/**/*.png', {
+  eager: true,
+  import: 'default',
+  query: `?format=webp&w=480&as=meta:width;height`,
 })
 
 function flattenPagetree(tree: Doc[], route: string) {
   for (const page of tree) {
-    pages[page.file] = {
+    pages.set(page.file, {
       content: content['/src/content' + page.file.slice(1)]!,
       route: route + '/' + page.route,
       name: page.name,
-    }
+    })
     if (page.children) flattenPagetree(page.children, route + '/' + page.route)
   }
 }

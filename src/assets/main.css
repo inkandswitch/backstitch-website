@@ -29,7 +29,7 @@
 }
 
 @utility button {
-  @apply rounded-lg inline-block font-semibold p-2 pb-2.5 bg-mauve-900;
+  @apply rounded-lg inline-block font-semibold p-2 bg-mauve-900;
   @apply transition-all duration-100;
   @apply hover:border-dashed border-primary-500 border-2 text-primary-500;
   @apply border-solid;
@@ -42,7 +42,7 @@
 
   html,
   body {
-    @apply bg-mauve-900 text-neutral-200;
+    @apply bg-mauve-900 text-neutral-300;
   }
 
   h1,
@@ -77,17 +77,8 @@
     @apply border-secondary-500 border-2 text-secondary-500;
   }
 
-  p,
-  .docs ul {
+  p {
     @apply mb-2 text-lg;
-  }
-
-  .docs p {
-    @apply mb-4;
-  }
-
-  .docs ul li {
-    @apply list-disc ml-12 mb-2;
   }
 
   .content-box {
@@ -109,18 +100,88 @@
   }
 }
 
-.docs h1 {
-  @apply mb-4 text-3xl text-left;
-}
+@layer docs {
+  .docs h1 {
+    @apply mb-4 text-3xl text-left;
+  }
 
-.docs h2 {
-  @apply mb-4 text-2xl text-left;
-}
+  .docs h2 {
+    @apply mb-4 text-2xl text-left;
+  }
 
-.docs h3 {
-  @apply mb-4 text-xl text-left;
-}
+  .docs h3 {
+    @apply mb-4 text-xl text-left;
+  }
 
-.docs h4 {
-  @apply mb-4 text-lg text-left;
+  .docs h4 {
+    @apply mb-4 text-lg text-left;
+  }
+
+  .docs ul,
+  .docs ol {
+    @apply mb-4 text-lg;
+  }
+
+  .docs p {
+    @apply mb-4;
+  }
+
+  .docs ul > li {
+    @apply list-disc;
+  }
+
+  .docs ol > li {
+    @apply list-decimal;
+  }
+
+  .docs ol li::marker,
+  .docs ul li::marker {
+    @apply text-neutral-400 pr-50 block;
+  }
+
+  .docs ol li,
+  .docs ul li {
+    @apply ml-12 pl-2;
+  }
+
+  .docs .warning {
+    @apply m-4;
+    @apply border-secondary-400 rounded-2xl border-2 border-dashed;
+  }
+
+  .docs h3,
+  .docs h2 {
+    @apply font-semibold;
+  }
+
+  .docs pre {
+    @apply bg-mauve-950  text-neutral-400 py-0.5 px-1.5 mx-1 rounded-md outline-neutral-800 outline-2;
+    @apply mb-4 mr-4 p-2;
+  }
+
+  .docs *:not(pre) > code {
+    @apply bg-mauve-950  text-neutral-400 py-0.5 px-1.5 mx-1 rounded-md outline-neutral-800 outline-2;
+  }
+
+  .docs .warning > *:last-child {
+    @apply mb-5;
+  }
+
+  .docs .warning > *:first-child {
+    @apply text-secondary-400 align-middle border-b-2 border-dashed border-secondary-400 font-mono font-normal;
+    @apply mx-2 px-2 py-2 text-lg;
+  }
+  .docs .warning > *:not(:first-child) {
+    @apply mx-4;
+  }
+
+  .docs .warning > *:first-child::before {
+    content: '';
+    mask-image: url('@/assets/warning.svg');
+    @apply w-6 h-6 mr-2 bg-secondary-400 inline-block align-middle;
+  }
+
+  .docs img {
+    @apply max-w-120 w-full mx-auto rounded-lg border-2 border-neutral-500;
+  }
 }

@@ -19,7 +19,7 @@ import SyncSimulation from './SyncSimulation.vue'
       <div class="flex flex-1 justify-start">
         <a
           class="button-secondary"
-          href="https://github.com/inkandswitch/patchwork-godot-plugin/"
+          href="https://github.com/inkandswitch/backstitch/"
           target="_blank"
           rel="nofollow"
           >Visit on GitHub</a
