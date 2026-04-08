@@ -12,6 +12,7 @@ export abstract class Simulation {
   canvas: HTMLCanvasElement
   ctx: CanvasRenderingContext2D
   fitHeight: boolean
+  resizeObserver?: ResizeObserver
 
   constructor(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D, fitHeight: boolean) {
     this.world = []
@@ -20,7 +21,6 @@ export abstract class Simulation {
     this.canvas = canvas
     this.ctx = ctx
     this.animate = this.animate.bind(this)
-    this.resizeCanvas = this.resizeCanvas.bind(this)
     this.fitHeight = fitHeight
   }
 
@@ -70,10 +70,14 @@ export abstract class Simulation {
   }
 
   start() {
-    window.addEventListener('resize', this.resizeCanvas)
-
+    this.resizeObserver = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        this.canvas.width = entry.contentRect.width
+        this.canvas.height = entry.contentRect.height
+      }
+    })
+    if (this.ctx.canvas.parentElement) this.resizeObserver?.observe(this.ctx.canvas.parentElement)
     this.animationId = requestAnimationFrame(this.animate)
-    this.resizeCanvas()
   }
 
   protected update(_delta: number): void {}
@@ -81,16 +85,8 @@ export abstract class Simulation {
   protected afterDraw(_ctx: CanvasRenderingContext2D): void {}
 
   stop() {
-    window.removeEventListener('resize', this.resizeCanvas)
     cancelAnimationFrame(this.animationId)
-  }
-
-  private resizeCanvas() {
-    const container = this.ctx.canvas.parentElement
-    if (container == null) return
-    const [width, height] = [container.clientWidth, container.clientHeight]
-    this.canvas.width = width
-    this.canvas.height = height
+    this.resizeObserver?.disconnect()
   }
 }
 
