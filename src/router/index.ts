@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import DocsView from '../views/DocsView.vue'
-import { pageTree, type Doc } from '@/content/docs-pages'
+import { pageTree, type Doc } from '@/content/docs-routes'
 import DocPageView from '@/views/DocPageView.vue'
 
 function generateDocsRoutes(docs: Doc[]) {

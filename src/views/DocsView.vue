@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { pageTree } from '@/content/docs-pages'
+import { pageTree } from '@/content/docs-routes'
 import TocItem from '@/components/TocItem.vue'
 import { RouterView } from 'vue-router'
 import { ref } from 'vue'

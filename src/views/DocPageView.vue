@@ -120,7 +120,7 @@ const prevPage = computed(() => {
 
 const html = computed(() => {
   const page = pages.get(props.file)!
-  return md.render(page.content)
+  return md.render(page.content ?? '')
 })
 
 // intercept anchor tags into a fake router-link
