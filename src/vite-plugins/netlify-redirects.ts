@@ -10,7 +10,7 @@ function convertToNetlifyPath(route: string) {
   return route
 }
 
-export default function netlifyRedirectsPlugin(routes: string[]): Plugin {
+export default function netlifyRedirectsPlugin(routes: string[], appendRules: string[]): Plugin {
   return {
     name: 'netlify-redirects-generator',
     apply: 'build',
@@ -25,8 +25,7 @@ export default function netlifyRedirectsPlugin(routes: string[]): Plugin {
         redirects.push(`${netlifyPath} /index.html 200`)
       })
 
-      // redirect anything else to 404 with a real status code
-      redirects.push(`/* /index.html 404`)
+      redirects.push(...appendRules)
 
       const output = redirects.join('\n')
 
