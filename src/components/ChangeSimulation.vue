@@ -238,7 +238,7 @@ defineExpose({
     </div>
     <!-- border-primary-500 border-secondary-500 -->
     <div :class="`border-${color}-500`" class="border-b-2 border-dashed mx-2"></div>
-    <div class="w-full relative grow aspect-square max-h-[calc(40vh+4rem)] shrink">
+    <div class="w-full relative grow aspect-square max-h-[calc(40vh+0rem)] shrink">
       <canvas ref="canvas" class="canvas absolute top-0 left-0 right-0 bottom-0"></canvas>
       <div
         class="absolute w-[70%] h-[70%] max-w-30 max-h-30 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
