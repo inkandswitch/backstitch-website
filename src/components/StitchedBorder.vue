@@ -7,8 +7,8 @@ const height = ref(100)
 
 onMounted(() => {
   if (!container.value) return
-  width.value = container.value.clientWidth
-  height.value = container.value.clientHeight
+  // width.value = container.value.clientWidth
+  // height.value = container.value.clientHeight
   const ro = new ResizeObserver((entries) => {
     for (const entry of entries) {
       width.value = entry.contentRect.width
