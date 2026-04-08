@@ -17,11 +17,12 @@ for (const [_, page] of pages) {
 
 routes.push('/')
 
-const appendRules = [
+const prependRules = [
   'http://backstitch-website.netlify.app/* https://backstitch.dev/:splat 301!',
   'https://backstitch-website.netlify.app/* https://backstitch.dev/:splat 301!',
-  '/* /index.html 404',
 ]
+
+const appendRules = ['/* /index.html 404']
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -30,7 +31,7 @@ export default defineConfig({
     vueDevTools(),
     tailwindcss(),
     imagetools(),
-    netlifyRedirects(routes, appendRules),
+    netlifyRedirects(prependRules, routes, appendRules),
     sitemap({ dynamicRoutes: routes, hostname: 'https://backstitch.dev' }),
   ],
   resolve: {

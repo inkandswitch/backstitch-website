@@ -10,13 +10,17 @@ function convertToNetlifyPath(route: string) {
   return route
 }
 
-export default function netlifyRedirectsPlugin(routes: string[], appendRules: string[]): Plugin {
+export default function netlifyRedirectsPlugin(
+  prependRules: string[],
+  routes: string[],
+  appendRules: string[],
+): Plugin {
   return {
     name: 'netlify-redirects-generator',
     apply: 'build',
 
     generateBundle(_, bundle) {
-      const redirects = []
+      const redirects = prependRules
 
       routes.forEach((route) => {
         const netlifyPath = convertToNetlifyPath(route)
