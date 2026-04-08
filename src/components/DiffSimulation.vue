@@ -166,7 +166,7 @@ const props = defineProps(['color'])
                       <CollapseIcon />Circle
                     </span>
                     <ul>
-                      <div class="property-grid">
+                      <li class="property-grid">
                         <div class="name">Modulate</div>
                         <div class="old">
                           <div class="color"></div>
@@ -174,12 +174,12 @@ const props = defineProps(['color'])
                         <div class="new">
                           <div class="color"></div>
                         </div>
-                      </div>
-                      <div class="property-grid">
+                      </li>
+                      <li class="property-grid">
                         <div class="name">Z Index</div>
                         <div class="old">0</div>
                         <div class="new">1</div>
-                      </div>
+                      </li>
                     </ul>
                   </li>
                   <li>

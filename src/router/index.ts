@@ -43,7 +43,8 @@ const router = createRouter({
       component: HomeView,
       meta: {
         title: 'Backstitch',
-        description: 'Backstitch provides real-time version control for Godot.',
+        description:
+          'Backstitch: A Godot plugin that enables fast collaboration for dev teams, game jams, and classrooms.',
       },
     },
     {
