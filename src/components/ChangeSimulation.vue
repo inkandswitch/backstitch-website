@@ -137,7 +137,6 @@ class ChangeSimulation extends Simulation {
   }
 
   moveShapes() {
-    console.log('Dispatching..')
     // grab and move 2 shapes
     const shape1idx = Math.floor(Math.random() * this.shapes.length)
     const shape1 = this.shapes[shape1idx]

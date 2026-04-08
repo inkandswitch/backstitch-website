@@ -108,18 +108,25 @@ const content = import.meta.glob<string>('/src/content/docs/**/*.md', {
   query: '?raw',
 })
 
+// image width is calculated from CSS max-width; if that changes, change this.
+// may look blurry on highdpi screens or zoom
 export const images = import.meta.glob<string>('/src/content/docs/**/*.png', {
   eager: true,
   import: 'default',
-  // calculated from CSS max-width; if that changes, change this.
-  // may look blurry on highdpi screens or zoom
-  query: `?format=webp&w=480`,
+  query: {
+    format: 'webp',
+    w: 480,
+  },
 })
 
 export const imageMetadata = import.meta.glob<ImageMetadata>('/src/content/docs/**/*.png', {
   eager: true,
   import: 'default',
-  query: `?format=webp&w=480&as=meta:width;height`,
+  query: {
+    format: 'webp',
+    w: '480',
+    as: 'meta:width;height',
+  },
 })
 
 function flattenPagetree(tree: Doc[], route: string) {

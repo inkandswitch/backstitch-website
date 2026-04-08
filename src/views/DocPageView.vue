@@ -40,7 +40,6 @@ function fixLink(url: string): string {
 function fixImage(url: string): [string, ImageMetadata] | null {
   let mdPath = ''
   for (const [thisPath, page] of pages) {
-    console.log('TESTING ', page.route, route.fullPath)
     if (path.resolve(page.route) == path.resolve(route.fullPath)) {
       mdPath = thisPath
     }
@@ -49,7 +48,6 @@ function fixImage(url: string): [string, ImageMetadata] | null {
   const r = new RegExp('^(?:[a-z+]+:)?//', 'i')
   if (!r.test(url)) {
     if (url.endsWith('.png')) {
-      console.log('FIXING ', url, mdPath)
       const res = path.join('/src/content', mdPath, '../', url)
       if (images[path.resolve(res)]) {
         const resolved = path.resolve(res)

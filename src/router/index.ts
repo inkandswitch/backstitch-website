@@ -27,8 +27,6 @@ function generateDocsRoutes(docs: Doc[]) {
   return docsRoutes
 }
 
-console.log(generateDocsRoutes(pageTree))
-
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [

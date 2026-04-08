@@ -72,7 +72,6 @@ export abstract class Simulation {
   start() {
     window.addEventListener('resize', this.resizeCanvas)
 
-    console.log('start')
     this.animationId = requestAnimationFrame(this.animate)
     this.resizeCanvas()
   }
