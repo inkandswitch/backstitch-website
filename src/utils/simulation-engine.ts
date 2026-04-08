@@ -88,8 +88,9 @@ export abstract class Simulation {
   private resizeCanvas() {
     const container = this.ctx.canvas.parentElement
     if (container == null) return
-    this.canvas.width = container.clientWidth
-    this.canvas.height = container.clientHeight
+    const [width, height] = [container.clientWidth, container.clientHeight]
+    this.canvas.width = width
+    this.canvas.height = height
   }
 }
 
