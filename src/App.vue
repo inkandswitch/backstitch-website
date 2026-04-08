@@ -22,8 +22,13 @@ const year = new Date().getFullYear()
         <RouterView />
       </main>
 
-      <footer class="content-box mt-0 p-5">
-        <p class="text-center">Copyright © {{ year }} Backstitch contributors.</p>
+      <footer class="bg-[rgba(0,0,0,0.2)] w-full mt-4 p-5">
+        <div class="content-box">
+          <p class="text-center">
+            Contact: <a href="mailto:paul@inkandswitch.com">paul@inkandswitch.com</a>
+          </p>
+          <p class="text-center">Copyright © {{ year }} Backstitch contributors.</p>
+        </div>
       </footer>
     </div>
   </div>

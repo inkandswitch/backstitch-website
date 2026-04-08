@@ -57,8 +57,7 @@ import ShareIcon from './icons/ShareIcon.vue'
         <ShareIcon class="fill-secondary-500 p-1" />
         <p>
           <strong>Share Games via URL</strong>: Once you sync your project with a server, you can
-          share a link to your game. Select a branch, and play it directly in your browser! (Coming
-          soon!)
+          share a link to your game. Select a branch, and play it directly in your browser!
         </p>
         <ArchiveIcon class="fill-secondary-500 p-1" />
         <p>
