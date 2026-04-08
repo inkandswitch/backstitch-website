@@ -6,7 +6,7 @@ As long as you're regularly saving your work, data loss is unlikely. All of your
 
 If syncing is not working, you can try falling back to other methods of syncing data, like using a Git repository.
 
-If the editor crashes or seems unresponsive, try restarting the editor.
+If Godot crashes or seems unresponsive, try restarting the editor.
 
 ## I found a bug!
 

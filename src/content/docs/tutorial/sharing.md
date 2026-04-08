@@ -20,7 +20,7 @@ Once you are both synced up (it might take some time to load), you can start edi
 
 ## Share via Web URL
 
-If you're using the [Alpha Test Server](../server/alpha-server.md), you can copy a playable web link:
+If you're using the [Alpha Test Server](../../server/alpha-server.md), you can copy a playable web link:
 
 !["Copy Playable Link" button](copy-playable-link.png)
 
