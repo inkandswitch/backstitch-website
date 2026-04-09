@@ -12,9 +12,9 @@ Press the "Copy Project ID" button in the Sidebar's header to copy a Project ID 
 2mtHkfkTi7FKVLk7CmFexhA1rm3Y
 ```
 
-When you have that ID, you can share it with other collaborators who have a copy of the project (either via Git or shared in a `.zip` file), and who have Backstitch installed. As a collaborator, enter a project ID, here:
+When you have that ID, you can share it with other collaborators who have a copy of the project (either via Git or shared in a `.zip` file), and who have Backstitch installed. As a collaborator, enter a project ID, here, and click "Load Existing Project":
 
-TODO add image
+![Enter your project ID](project-id.png)
 
 Once you are both synced up (it might take some time to load), you can start editing files together!
 
