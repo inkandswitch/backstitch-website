@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
 import BackgroundSpiral from './components/BackgroundSpiral.vue'
+import BackstitchIcon from './components/icons/BackstitchIcon.vue'
 const year = new Date().getFullYear()
 </script>
 
@@ -12,7 +13,10 @@ const year = new Date().getFullYear()
     </div>
     <div class="flex flex-col min-h-screen justify-between items-start relative w-full">
       <header class="content-box my-8 flex items-center justify-between w-full">
-        <RouterLink to="/" class="block">Backstitch</RouterLink>
+        <RouterLink to="/" class="flex items-center gap-4">
+          <BackstitchIcon class="fill-neutral-300 stroke-neutral-300 h-15" />
+          <div class="font-serif text-2xl font-bold">Backstitch</div>
+        </RouterLink>
         <RouterLink to="/docs" class="button" v-if="!$route.fullPath.startsWith('/docs')"
           >Get Started</RouterLink
         >
