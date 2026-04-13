@@ -2,7 +2,9 @@
 
 Just want to get started quickly? Try out a demo project from the Endless Foundation's curriculum!
 
-1. Download Moddable Platformer or Threadbare from the [latest release](https://github.com/inkandswitch/backstitch/releases/latest)
+1. Download Moddable Platformer or Threadbare from the [latest release](https://github.com/inkandswitch/backstitch/releases/latest):
+   - [Moddable Platformer](https://github.com/inkandswitch/backstitch/releases/latest/download/moddable-platformer-with-backstitch.zip)
+   - [Threadbare](https://github.com/inkandswitch/backstitch/releases/latest/download/threadbare-with-backstitch.zip)
 2. Unzip the file
 3. Double-click the launch script for your platform:
    - Windows: `backstitch-launcher.windows.exe`
