@@ -14,8 +14,8 @@ const year = new Date().getFullYear()
     <div class="flex flex-col min-h-screen justify-between items-start relative w-full">
       <header class="content-box my-8 flex items-center justify-between w-full">
         <RouterLink to="/" class="home-link flex items-center gap-3 bg-mauve-900 rounded-2xl">
-          <BackstitchIcon class="fill-neutral-300 stroke-neutral-300 h-18" />
-          <div class="font-serif text-3xl font-regular mb-2">Backstitch</div>
+          <BackstitchIcon class="fill-neutral-300 stroke-neutral-300 h-17" />
+          <div class="font-serif text-3xl font-medium mb-2">Backstitch</div>
         </RouterLink>
         <RouterLink to="/docs" class="button" v-if="!$route.fullPath.startsWith('/docs')"
           >Get Started</RouterLink
