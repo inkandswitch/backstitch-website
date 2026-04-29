@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import GithubIcon from './icons/GithubIcon.vue'
+import DiscordIcon from './icons/DiscordIcon.vue'
 import SyncSimulation from './SyncSimulation.vue'
 </script>
 
@@ -13,18 +15,20 @@ import SyncSimulation from './SyncSimulation.vue'
       <SyncSimulation />
     </p>
     <div class="flex justify-center gap-5 sm:gap-20 flex-col sm:flex-row items-center text-xl">
-      <div class="flex flex-1 justify-end">
-        <RouterLink class="button" to="/docs">Try the alpha!</RouterLink>
-      </div>
-      <div class="flex flex-1 justify-start">
-        <a
-          class="button-secondary"
-          href="https://github.com/inkandswitch/backstitch/"
-          target="_blank"
-          rel="nofollow"
-          >Visit on GitHub</a
-        >
-      </div>
+      <RouterLink class="button" to="/docs">Try the alpha!</RouterLink>
+      <a
+        class="button-secondary flex gap-2 justify-center items-center"
+        href="https://discord.gg/SkW9vem5Ez"
+        target="_blank"
+        rel="nofollow"
+      >
+        <DiscordIcon class="fill-secondary-500 w-8" /> Join the Discord!
+      </a>
+      <a
+        class="button-secondary flex gap-1 justify-center items-center"
+        href="https://github.com/inkandswitch/backstitch/"
+        ><GithubIcon class="fill-secondary-500 w-8" /> GitHub</a
+      >
     </div>
   </section>
 </template>
