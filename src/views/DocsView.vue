@@ -1,12 +1,18 @@
 <script setup lang="ts">
-import { pageTree } from '@/content/docs-routes'
-import TocItem from '@/components/TocItem.vue'
+import { computed, ref } from 'vue'
 import { RouterView } from 'vue-router'
-import { ref } from 'vue'
+import { pageTrees, localePrefix } from '@/content/docs-routes'
+import TocItem from '@/components/TocItem.vue'
+import LanguageSwitcher from '@/components/LanguageSwitcher.vue'
 import CloseIcon from '@/components/icons/CloseIcon.vue'
+import { useLocale } from '@/utils/use-locale'
 import router from '@/router'
 
 const expanded = ref(false)
+const { locale, t } = useLocale()
+
+const tree = computed(() => pageTrees[locale.value])
+const parentRoute = computed(() => localePrefix(locale.value))
 
 router.beforeEach(() => {
   expanded.value = false
@@ -22,24 +28,35 @@ router.beforeEach(() => {
       <div
         class="sm:hidden flex justify-between items-center text-lg border-dashed border-b-2 mb-3 border-primary-800"
       >
-        Table of Contents
+        {{ t.tableOfContents }}
         <button
-          aria-label="Close Menu"
+          :aria-label="t.closeMenu"
           class="toc-close-button inline-block w-10 p-1 fill-primary-800 self-end"
           @click="expanded = !expanded"
         >
           <CloseIcon />
         </button>
       </div>
+      <div class="hidden sm:flex justify-end mb-3">
+        <LanguageSwitcher />
+      </div>
+      <div class="sm:hidden mb-3">
+        <LanguageSwitcher />
+      </div>
       <ul>
-        <TocItem :doc="doc" parent-route="/docs" v-for="(doc, index) in pageTree" :key="index" />
+        <TocItem
+          :doc="doc"
+          :parent-route="parentRoute"
+          v-for="(doc, index) in tree"
+          :key="`${locale}-${index}`"
+        />
       </ul>
     </aside>
     <button
       class="toc-button sm:hidden text-primary-500 border-primary-500 border-2 rounded-lg px-3 py-1 mb-4 self-start"
       @click="expanded = true"
     >
-      Table of Contents
+      {{ t.tableOfContents }}
     </button>
     <div
       class="sm:block hidden self-stretch w-0 pr-8 mr-8 my-12 border-r-2 border-dashed border-primary-800"
