@@ -9,7 +9,7 @@
         <a href="https://www.inkandswitch.com/" rel="nofollow" target="_blank">Ink & Switch</a>:
         Nikita Zatkovich, Paul Sonnentag, and Lilith Duncan. Thanks to gracious support from the
         <a href="https://endlessglobal.com/the-endless-foundation" target="_blank">
-          Endless Foundation </a
+          Endless Foundation</a
         >, we're able to work full-time on Backstitch.
       </p>
       <p>
