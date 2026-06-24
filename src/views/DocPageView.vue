@@ -5,6 +5,7 @@ import { pages, images, type ImageMetadata, imageMetadata } from '@/content/docs
 import path from 'path-browserify-esm'
 import { useRoute } from 'vue-router'
 import router from '@/router'
+import { useLocale } from '@/utils/use-locale'
 
 const md = new MarkdownIt({
   html: true,
@@ -16,6 +17,7 @@ const props = defineProps<{
 }>()
 
 const route = useRoute()
+const { t } = useLocale()
 
 function isExternal(url: string) {
   const r = new RegExp('^(?:[a-z+]+:)?//', 'i')
@@ -88,35 +90,20 @@ md.use((md) => {
   })
 })
 
-function getIndexOfKey<K, V>(map: Map<K, V>, targetKey: K): number {
-  let i = 0
-  for (const key of map.keys()) {
-    if (key === targetKey) return i
-    i++
-  }
-  return -1
+// Returns the next/previous page in the same locale as `currentFile`. Pages
+// are inserted into the map in sidebar order per locale, so adjacency within
+// the locale's slice gives us natural prev/next behavior.
+function siblingPage(currentFile: string, offset: number) {
+  const current = pages.get(currentFile)
+  if (!current) return undefined
+  const sameLocale = [...pages.values()].filter((p) => p.locale === current.locale)
+  const index = sameLocale.findIndex((p) => p.route === current.route)
+  if (index < 0) return undefined
+  return sameLocale[index + offset]
 }
 
-function getAtIndex<K, V>(map: Map<K, V>, index: number): V | undefined {
-  let i = 0
-  for (const key of map.keys()) {
-    if (i == index) return map.get(key)
-    i++
-  }
-  return undefined
-}
-
-const nextPage = computed(() => {
-  const index = getIndexOfKey(pages, props.file)
-  const page = getAtIndex(pages, index + 1)
-  return page
-})
-
-const prevPage = computed(() => {
-  const index = getIndexOfKey(pages, props.file)
-  const page = getAtIndex(pages, index - 1)
-  return page
-})
+const nextPage = computed(() => siblingPage(props.file, 1))
+const prevPage = computed(() => siblingPage(props.file, -1))
 
 const html = computed(() => {
   const page = pages.get(props.file)!
@@ -142,7 +129,7 @@ function click(e: MouseEvent) {
           :to="prevPage.route"
           class="button block w-full h-full no-underline text-secondary-500 border-secondary-500"
         >
-          <div class="text-base">Previous page</div>
+          <div class="text-base">{{ t.previousPage }}</div>
           <div class="text-xl text-neutral-200">{{ prevPage.name }}</div>
         </router-link>
       </div>
@@ -151,7 +138,7 @@ function click(e: MouseEvent) {
           :to="nextPage.route"
           class="button block w-full h-full no-underline text-primary-700 border-primary-600"
         >
-          <div class="text-base">Next page</div>
+          <div class="text-base">{{ t.nextPage }}</div>
           <div class="text-xl text-neutral-200">{{ nextPage.name }}</div>
         </router-link>
       </div>
