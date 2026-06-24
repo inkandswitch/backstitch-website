@@ -10,9 +10,7 @@ If Godot crashes or seems unresponsive, try restarting the editor.
 
 ## Limitations
 
-Backstitch is currently limited in the project sizes it can support. It is suitable for projects up to several gigabytes in size, depending on your system configuration. However, since all files will be stored in your system's RAM, large projects will degrade system performance with Backstitch.
-
-We have long-term plans to reduce Backstitch's memory usage and improve its performance!
+Backstitch is still in early alpha, and only supports projects up to several gigabytes (depending on your system's memory). We have plans to support larger projects, but for now, Backstich is best for smaller games, game jams, and classrooms!
 
 ## I found a bug!
 
