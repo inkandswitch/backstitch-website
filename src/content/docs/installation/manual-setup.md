@@ -2,13 +2,8 @@
 
 To use Backstitch in a custom project without the launcher, extra setup is needed.
 
-1. Visit the [latest release of Backstitch](https://github.com/inkandswitch/backstitch/releases/latest), and download:
-   - Our custom fork of Godot, `godot-with-backstitch`, for your platform:
-     - [Windows](https://github.com/inkandswitch/backstitch/releases/latest/download/godot-with-backstitch-windows.zip)
-     - [Linux](https://github.com/inkandswitch/backstitch/releases/latest/download/godot-with-backstitch-linux.zip)
-     - [macOS](https://github.com/inkandswitch/backstitch/releases/latest/download/godot-with-backstitch-macos.zip)
-   - Backstitch itself, as `backstitch`
-     - [Backstitch](https://github.com/inkandswitch/backstitch/releases/latest/download/backstitch.zip)
-2. Unzip the downloaded `backstitch` into your project, in the addons file.
+1. Download [backstitch.zip](https://github.com/inkandswitch/backstitch/releases/latest/download/backstitch.zip) from GitHub Releases
+2. Unzip the downloaded `addons` into your project, in the addons folder.
    - Your project should look like `<root>/addons/backstitch/(... Backstitch.gdextension and other files)`
-3. Run the custom fork of Godot, navigate to your project, and open it.
+   - If you already have an `addons` folder, add the `backstitch` folder next to your existing addons.
+3. Open your project with Godot 4.7 or later!

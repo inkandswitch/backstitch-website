@@ -1,7 +1,7 @@
 # Setup & Installation
 
-Backstitch is still waiting on Godot to make some changes, so we currently rely on a **custom build of Godot 4.7.** In the near future, we'll be able to ship in the Asset Library, but for now, setting up Backstitch requires a bit of extra work.
+Backstitch is compatible with **Godot 4.7**!
 
 - **Quick Start**: If you simply want to download any project to see if you like it, [try out Moddable Platformer, Moddable Pong, or Threadbare](./demo-project.md) from the Endless Foundation's curriculum.
-- To setup Backstitch in your own project, it's easiest to [use the Backstitch Launcher](./launcher.md).
-- If you prefer not to use the launcher, you can [set up Backstitch manually](./manual-setup.md).
+- If you want to **automatically install & launch** Backstitch, it's easiest to [use the Backstitch Launcher](./launcher.md).
+- To manually setup Backstitch in your own project, please [install Backstitch](./manual-setup.md) as an addon!
