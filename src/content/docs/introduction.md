@@ -2,13 +2,7 @@
 
 Backstitch provides real-time, live version control for Godot. It's great for indie teams, classrooms, and game jams – and anyone else who collaborates in Godot!
 
-**Please connect with us!** Fill out [this Google Form](https://docs.google.com/forms/d/1UnSvRhMLkdjE9uQjgnohzChIZhQziQMIeQyRDvIuIiU/) to chat with us directly about your use-case, and get personalized support. We want to connect with as many types of users as possible, to make Backstitch the best it can be!
-
-<p class="text-center">
-    <a href="https://docs.google.com/forms/d/1UnSvRhMLkdjE9uQjgnohzChIZhQziQMIeQyRDvIuIiU/" target="_blank" class="button no-underline inline-block">Fill out this form to get started!</a>
-</p>
-
-If you prefer to connect over Discord, [join our server](https://discord.gg/SkW9vem5Ez) and say hi!
+**Please connect with us!** Come join our [our Discord](https://discord.gg/SkW9vem5Ez) to chat with us directly about your use-case, and get personalized support. We want to connect with as many types of users as possible, to make Backstitch the best it can be!
 
 <p class="text-center">
     <a
