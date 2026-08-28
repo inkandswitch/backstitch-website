@@ -26,4 +26,4 @@ If you're using the [Alpha Test Server](../../server/alpha-server.md), you can c
 
 This link will let you play any branch of your project in the browser. Optionally, download a `.zip` file of the whole project, to immediately start editing!
 
-If you're not using the Alpha Test Server, this feature is currently unavailable. We're still working on implementing that feature into the open source sync server. Stay tuned!
+If you're not using the Alpha Test Server, you can enable this feature on your server. Please visit the [Backstitch Sync Server](https://github.com/inkandswitch/backstitch-sync-server) repository for more details on hosting the Webviewer!
