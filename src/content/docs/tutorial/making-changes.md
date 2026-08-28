@@ -2,7 +2,7 @@
 
 ## Set your username
 
-Start by entering a username in the bottom right corner, if you haven't already. This will help identify you to other collaborators.
+Start by entering a username in the bottom toolbar, if you haven't already. This will help identify you to other collaborators.
 
 !["Change Username" button](set-username.png)
 
